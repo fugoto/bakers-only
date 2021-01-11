@@ -1,21 +1,25 @@
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import {
+  HashRouter as Router, Route, Switch,
+} from 'react-router-dom';
+
 import Photos from './Photos';
+import AddPhoto from './AddPhoto';
+import NavBar from './NavBar';
 
+// KEEP AS class for get user later on
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
-
   render() {
     return (
       <>
-        <h1>Say hi to your baker friends</h1>
-        <div>
-          <Photos />
-        </div>
+        <Router>
+          <NavBar />
+          <Switch>
+            <Route path="/" exact component={Photos} />
+            <Route path="/addPhoto" exact component={AddPhoto} />
+          </Switch>
+        </Router>
       </>
     );
   }

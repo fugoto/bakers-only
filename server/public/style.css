@@ -1,0 +1,10 @@
+.photos {
+    display: flex;
+}
+
+/* .MuiPaper-root MuiCard-root photo-card MuiPaper-outlined MuiPaper-rounded */
+
+.photo-card {
+    width: 33%;
+    display: inline-block;
+}
