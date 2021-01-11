@@ -1,0 +1,24 @@
+next steps 
+
+
+make sure gitignore is all good (do i commit bundle js map)
+create mode 100644 .eslintrc.js
+ create mode 100644 client/components/App.js
+ create mode 100644 client/index.js
+ create mode 100644 nextSteps.txt
+ create mode 100644 package-lock.json
+ create mode 100644 package.json
+ create mode 100644 server/db/db.js
+ create mode 100644 server/db/index.js
+ create mode 100644 server/db/models/Cat.js
+ create mode 100644 server/db/models/User.js
+ create mode 100644 server/db/seed.js
+ create mode 100644 server/index.js
+ create mode 100644 server/public/bundle.js.map
+ create mode 100644 server/public/images/cat1.jpeg
+ create mode 100644 server/public/index.html
+ create mode 100644 server/public/style.css
+ create mode 100644 server/routes/index.js
+ create mode 100644 webpack.config.js
+
+then set up seed
