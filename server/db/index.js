@@ -1,9 +1,9 @@
-const { db } = require('./db')
-const { Cat } = require('./models/Cat')
-const { User } = require('./models/User')
+const { db } = require('./db');
+const { Photo } = require('./models/Photo');
+const { User } = require('./models/User');
 
 // model associations
-Cat.belongsTo(User)
-User.hasMany(Cat)
+Photo.belongsTo(User);
+User.hasMany(Photo);
 
-module.exports = { db, Cat, User }
+module.exports = { db, Photo, User };

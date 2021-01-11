@@ -1,12 +1,11 @@
 const router = require('express').Router();
-// import models from /db
 
-// routes go here
+router.use('/photos', require('./photos'));
 
-router.get('/', async (req, res, next) => {
-  try {
-
-  } catch (error) { next(error); }
+router.use((req, res, next) => {
+  const err = new Error('API route not found!');
+  err.status = 404;
+  next(err);
 });
 
 module.exports = router;

@@ -1,12 +1,10 @@
-const Sequelize = require("sequelize")
+const Sequelize = require('sequelize');
 
-const databaseUrl = process.env.DATABASE_URL || 'postgres:localhost:5432/cats-only'
-//export your db
+const databaseUrl = process.env.DATABASE_URL || 'postgres:localhost:5432/bakers-only';
+
 const db = new Sequelize(databaseUrl, {
-    logging: false,
-    operatorsAliases: false
-})
+  logging: false,
+  operatorsAliases: false,
+});
 
-
-
-module.exports = { db }
+module.exports = { db };

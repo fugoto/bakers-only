@@ -4,14 +4,17 @@ const { db } = require('../db');
 
 const { STRING } = Sequelize;
 
-const User = db.define('user', {
-  name: {
+const Photo = db.define('photo', {
+  imageUrl: {
     type: STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
     },
   },
+  title: {
+    type: STRING,
+  },
 });
 
-module.exports = { User };
+module.exports = { Photo };

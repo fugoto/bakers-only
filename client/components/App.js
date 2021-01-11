@@ -1,13 +1,25 @@
-import React, { Component } from "react"
-//import any sub-components
+import React, { Component } from 'react';
+import {
+  Card, CardMedia, CardContent, Typography,
+} from '@material-ui/core';
+import Photos from './Photos';
 
 export default class App extends Component {
-	//constructor to initialize state
-	//any lifecycle methods
-	//any custom methods
-	render(){
-		return(
-			<h1>Say hi to your cat friends</h1>
-		)
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
+  render() {
+    return (
+      <>
+        <h1>Say hi to your baker friends</h1>
+        <div>
+          <Photos />
+        </div>
+      </>
+    );
+  }
 }

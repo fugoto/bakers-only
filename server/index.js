@@ -1,54 +1,45 @@
-const express = require("express")
-//initialize app
-const app = express()
-//require morgan|volleyball, path packages
-const morgan = require('morgan')
-//require db from /db
-const { db, Example } = require('./db')
-const routes = require('./routes')
-const path = require('path')
+const express = require('express');
+const app = express();
+const morgan = require('morgan');
+const path = require('path');
+const { db } = require('./db');
+const routes = require('./routes');
 
-//use morgan|volleyball
-app.use(morgan('dev'))
+app.use(morgan('dev'));
 
-//use express.json()
-app.use(express.json())
-app.use(express.urlencoded( {extended: false} ))
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-//use express.static() MAKE SURE THE PATH TO YOUR PUBLIC FOLDER IS RIGHT!
-app.use(express.static(path.join(__dirname,'./public')))
+app.use(express.static(path.join(__dirname, './public')));
 
-//require in your routes and use them on your api path
-app.use('/', routes)
-app.use('/api',routes)
+app.use('/api', routes);
 
-//404 handler
-app.use(function(req,res,next){
-    const err = new Error('Not found')
-    err.status = 404
-    next(err)
-})
+// 404 handler
+app.use((req, res, next) => {
+  const err = new Error('Not found');
+  err.status = 404;
+  next(err);
+});
 
-//500 handler
-app.use(function(err,req,res,next){
-    console.error(err,err.stack)
-    res.status(err.status || 500)
-    res.send('something wrong: ' + err.message)
-})
+// 500 handler
+app.use((err, req, res, next) => {
+  console.error(err, err.stack);
+  res.status(err.status || 500);
+  res.send(`something wrong: ${err.message}`);
+});
 
-//set PORT
-async function init(){
-    try{
-        console.log('syncing')
-        await db.sync()
-        const PORT = process.env.PORT || 3000
-        await app.listen(PORT, function(){
-            console.log(`Listening at http://localhost:${PORT}`)
-        })
-    } catch(error) {
-        console.error(error)
-    }
+// set PORT
+async function init() {
+  try {
+    console.log('syncing');
+    await db.sync();
+    const PORT = process.env.PORT || 3000;
+    await app.listen(PORT, () => {
+    console.log(`Listening at http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-//listen
-init()
+init();
