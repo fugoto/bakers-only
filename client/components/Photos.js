@@ -7,38 +7,17 @@ import SinglePhoto from './SinglePhoto';
 import { getPhotos } from '../store/photos';
 
 class Photos extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
-
   componentDidMount() {
     this.props.getPhotos();
   }
 
   render() {
     const { photos } = this.props;
-      return (
-        photos.map((photo) => {
-          return(
-            <Card variant="outlined" id="profileImages">
-              <CardMedia
-                component="img"
-                image={photo.imageUrl}
-              />
-              <CardContent>
-                <Typography variant="h5">
-                  Hi, my name is:
-                </Typography>
-                <Typography>
-                  {photo.title}
-                </Typography>
-              </CardContent>
-            </Card>
-          )
-        })
+    if(!photos.length) return null;
+    return (
+      photos.map((photo) => (
+        <SinglePhoto imageUrl={photo.imageUrl} title={photo.title} />
+      ))
     );
   }
 }

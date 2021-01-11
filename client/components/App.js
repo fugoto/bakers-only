@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import {
-  Card, CardMedia, CardContent, Typography,
-} from '@material-ui/core';
 import Photos from './Photos';
 
 export default class App extends Component {

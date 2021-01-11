@@ -1,4 +1,6 @@
 next steps 
 
+change repo name
+update indentation so eslint isnt annoying!
 change names to baked goods. filters can be vegan, cake, cookie cupcake etc
 
