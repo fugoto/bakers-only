@@ -1,6 +1,9 @@
 next steps 
 
-update so singlephoto can be used for addphoto framework. i think singlephoto needs to be class method and update state there (instead of on addphoto)
+check boxes for tags as subcomponent of addphoto
+delete photo functionality
+maybe log in log out?
+style nav bar
 
 change repo name
 update indentation so eslint isnt annoying!

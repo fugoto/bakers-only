@@ -17,7 +17,7 @@ export default function SinglePhoto(props) {
           image={imageUrl || './images/notFound.png'}
         />
         { type === 'add'
-          ? <Button id="upload_widget" variant="contained" color="secondary" onClick={getPhotoUrl}>Add Photo</Button>
+          ? <Button id="upload_widget" variant="contained" color="secondary" onClick={getPhotoUrl}>Upload Photo</Button>
           : null }
         <CardContent>
           <Typography>
@@ -26,8 +26,8 @@ export default function SinglePhoto(props) {
               : title }
           </Typography>
         </CardContent>
+        {/* { type === 'add' ? <Button onClick={addPhoto} variant="contained" color="secondary">Add My Creation!</Button> : null } */}
       </Card>
-      { type === 'add' ? <Button onClick={addPhoto} variant="contained" color="secondary">Add My Creation!</Button> : null }
     </>
   );
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from '@material-ui/core';
 import { addPhoto } from '../store/photos';
 import SinglePhoto from './SinglePhoto';
 
@@ -43,6 +44,7 @@ class AddPhoto extends Component {
     return (
       <div>
         <SinglePhoto type="add" getPhotoUrl={this.getPhotoUrl} addPhoto={this.addPhoto} getTitle={this.getTitle} imageUrl={this.state.imageUrl}/>
+        <Button onClick={addPhoto} variant="contained" color="secondary">Add My Creation!</Button>
       </div>
     );
   }
