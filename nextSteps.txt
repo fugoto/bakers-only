@@ -1,5 +1,7 @@
 next steps 
 
+update so singlephoto can be used for addphoto framework. i think singlephoto needs to be class method and update state there (instead of on addphoto)
+
 change repo name
 update indentation so eslint isnt annoying!
 change names to baked goods. filters can be vegan, cake, cookie cupcake etc

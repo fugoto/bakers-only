@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addPhoto } from '../store/photos';
+import SinglePhoto from './SinglePhoto';
 
 const cloudName = 'woofmates';
 const uploadPreset = 'woofmates';
@@ -10,9 +11,11 @@ class AddPhoto extends Component {
     super(props);
     this.state = {
       imageUrl: '',
+      title: '',
     };
     this.getPhotoUrl = this.getPhotoUrl.bind(this);
     this.addPhoto = this.addPhoto.bind(this);
+    this.getTitle = this.getTitle.bind(this);
   }
 
   getPhotoUrl() {
@@ -25,18 +28,21 @@ class AddPhoto extends Component {
       });
   }
 
+  getTitle(e) {
+    const title = e.target.value;
+    this.setState({ title });
+  }
+
   addPhoto() {
     const userId = this.props.user.id;
-    const { imageUrl } = this.state
-    console.log('userid', userId, imageUrl);
-    this.props.addPhoto(userId, imageUrl);
+    const { imageUrl, title } = this.state;
+    this.props.addPhoto(userId, imageUrl, title);
   }
 
   render() {
     return (
       <div>
-        <button id="upload_widget" onClick={this.getPhotoUrl}>Add Photo</button>
-        <button onClick={this.addPhoto}>Add My Creation!</button>
+        <SinglePhoto type="add" getPhotoUrl={this.getPhotoUrl} addPhoto={this.addPhoto} getTitle={this.getTitle} imageUrl={this.state.imageUrl}/>
       </div>
     );
   }
@@ -44,11 +50,11 @@ class AddPhoto extends Component {
 
 const mapStateToProps = (state) => ({
   photos: state.photos,
-  user: { id: 1 },
+  user: { id: 1 }, // MUST UPDATE
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addPhoto: (userId, imageUrl) => dispatch(addPhoto(userId, imageUrl)),
+  addPhoto: (userId, imageUrl, title) => dispatch(addPhoto(userId, imageUrl, title)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddPhoto);

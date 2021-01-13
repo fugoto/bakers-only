@@ -9,10 +9,11 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const { userId, imageUrl } = req.body;
-    console.log(userId, imageUrl)
+    const { userId, imageUrl, title } = req.body;
+    console.log(userId, imageUrl, title)
     const newPhoto = await Photo.create({
       imageUrl,
+      title,
       userId,
     });
     res.send(newPhoto);
