@@ -23,9 +23,9 @@ const _addPhoto = (photo) => ({
   photo,
 });
 
-const addPhoto = (userId, imageUrl, title) => async (dispatch) => {
+const addPhoto = (userId, photoInfo) => async (dispatch) => {
   try {
-    const { data } = await axios.post('/api/photos', { userId, imageUrl, title });
+    const { data } = await axios.post('/api/photos', { userId, photoInfo });
     dispatch(_addPhoto(data));
   } catch (err) {
     console.error(err);

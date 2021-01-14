@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const { db } = require('../db');
 
-const { STRING } = Sequelize;
+const { STRING, ARRAY } = Sequelize;
 
 const Photo = db.define('photo', {
   imageUrl: {
@@ -14,6 +14,9 @@ const Photo = db.define('photo', {
   },
   title: {
     type: STRING,
+  },
+  tags: {
+    type: ARRAY(STRING),
   },
 });
 

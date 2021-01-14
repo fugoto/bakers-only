@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { addPhoto } from '../store/photos';
 import SinglePhoto from './SinglePhoto';
+import Tags from './Tags';
 
 const cloudName = 'woofmates';
 const uploadPreset = 'woofmates';
@@ -13,10 +14,12 @@ class AddPhoto extends Component {
     this.state = {
       imageUrl: '',
       title: '',
+      tags: [],
     };
     this.getPhotoUrl = this.getPhotoUrl.bind(this);
     this.addPhoto = this.addPhoto.bind(this);
     this.getTitle = this.getTitle.bind(this);
+    this.getTag = this.getTag.bind(this);
   }
 
   getPhotoUrl() {
@@ -34,17 +37,22 @@ class AddPhoto extends Component {
     this.setState({ title });
   }
 
+  getTag(e) {
+    if (e.target.checked) this.setState({ tags: [...this.state.tags, e.target.name] });
+    else this.setState({ tags: this.state.tags.filter(tag => tag !== e.target.name) });
+  }
+
   addPhoto() {
     const userId = this.props.user.id;
-    const { imageUrl, title } = this.state;
-    this.props.addPhoto(userId, imageUrl, title);
+    this.props.addPhoto(userId, this.state);
   }
 
   render() {
     return (
       <div>
         <SinglePhoto type="add" getPhotoUrl={this.getPhotoUrl} addPhoto={this.addPhoto} getTitle={this.getTitle} imageUrl={this.state.imageUrl}/>
-        <Button onClick={addPhoto} variant="contained" color="secondary">Add My Creation!</Button>
+        <Tags getTag={this.getTag} />
+        <Button onClick={this.addPhoto} variant="contained" color="secondary">Add My Creation!</Button>
       </div>
     );
   }
@@ -56,7 +64,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addPhoto: (userId, imageUrl, title) => dispatch(addPhoto(userId, imageUrl, title)),
+  addPhoto: (userId, photoInfo) => dispatch(addPhoto(userId, photoInfo)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddPhoto);
