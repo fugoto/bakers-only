@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const { db } = require('../db');
+const db = require('../db');
 
 const { STRING, ARRAY } = Sequelize;
 
@@ -20,4 +20,4 @@ const Photo = db.define('photo', {
   },
 });
 
-module.exports = { Photo };
+module.exports = Photo;

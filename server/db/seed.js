@@ -1,3 +1,4 @@
+const faker = require('faker');
 const { db, Photo, User } = require('./index');
 
 const totalPhotos = 5;
@@ -13,7 +14,11 @@ for (let i = 1; i <= totalPhotos; i++) {
   });
 }
 for (let i = 1; i <= totalUsers; i++) {
-  users.push({ name: 'Fu' });
+  users.push({
+    name: faker.name.firstName(),
+    userEmail: faker.internet.email().toLowerCase(),
+    hashedPassword: 'test',
+  });
 }
 
 const seed = async () => {

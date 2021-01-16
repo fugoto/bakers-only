@@ -1,9 +1,11 @@
 next steps 
 
-check boxes for tags as subcomponent of addphoto
-delete photo functionality
-maybe log in log out?
+log in log out? - start with login component, copied from woofmates
+put constants in constants file (woofmates key etc)
+delete / edit photo functionality
 style nav bar
+add favorite option for picture 
+
 
 change repo name
 update indentation so eslint isnt annoying!

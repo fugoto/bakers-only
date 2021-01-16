@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const { db } = require('../db');
+const db = require('../db');
 
 const { STRING } = Sequelize;
 
@@ -12,6 +12,26 @@ const User = db.define('user', {
       notEmpty: true,
     },
   },
+  userEmail: {
+    type: STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: true,
+      notEmpty: true,
+    },
+  },
+  hashedPassword: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+}, {
+  defaultScope: {
+    attributes: { exclude: ['hashedPassword'] },
+  },
 });
 
-module.exports = { User };
+module.exports = User;

@@ -7,4 +7,4 @@ const db = new Sequelize(databaseUrl, {
   operatorsAliases: false,
 });
 
-module.exports = { db };
+module.exports = db;
