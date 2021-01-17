@@ -1,5 +1,6 @@
 const faker = require('faker');
 const { db, Photo, User } = require('./index');
+const { TAGS } = require('../../constants');
 
 const totalPhotos = 5;
 const totalUsers = 5;
@@ -7,10 +8,15 @@ const totalUsers = 5;
 const photos = [];
 const users = [];
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 for (let i = 1; i <= totalPhotos; i++) {
   photos.push({
     imageUrl: './images/cat1.jpeg',
     title: 'My cookie',
+    tags: [TAGS[getRandomInt(TAGS.length)], TAGS[getRandomInt(TAGS.length)]],
   });
 }
 for (let i = 1; i <= totalUsers; i++) {

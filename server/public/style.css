@@ -1,5 +1,11 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .photos {
     display: flex;
+    flex-wrap: wrap;
+    flex-basis: 33.333%
 }
 
 /* .MuiPaper-root MuiCard-root photo-card MuiPaper-outlined MuiPaper-rounded */
@@ -8,3 +14,29 @@
     width: 33%;
     display: inline-block;
 }
+
+.delete-photo {
+    display: flex;
+    flex-direction: column;
+}
+
+#nav-bar {
+    background-color: #DAE7DE;
+    display: flex;
+    justify-content: space-evenly;
+    height: 80px;
+    width: 100%;
+    max-width: 1600px;
+    z-index: 1;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+  }
+
+  #auth-button {
+      float: right;
+  }
+  

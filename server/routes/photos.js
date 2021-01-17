@@ -16,4 +16,13 @@ router.post('/', async (req, res, next) => {
   } catch (err) { next(err); }
 });
 
+router.delete('/', async (req, res, next) => {
+  try {
+    const { photoIds } = req.body;
+    console.log('body',photoIds);
+    Photo.deletePhotos(photoIds);
+    res.sendStatus(200);
+  } catch (err) { next(err); }
+});
+
 module.exports = router;

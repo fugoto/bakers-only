@@ -2,6 +2,12 @@ const router = require('express').Router();
 const { User, Session } = require('../db');
 const { A_WEEK_IN_MILLISECONDS } = require('../../constants');
 
+router.get('/', async (req, res, next) => {
+  try {
+    res.send(req.user);
+  } catch (err) { next(err); }
+});
+
 router.post('/login', async (req, res, next) => {
   try {
     const { userEmail, password } = req.body;
@@ -36,9 +42,21 @@ router.post('/login', async (req, res, next) => {
         },
         include: { all: true },
       });
-      console.log(user);
       res.status(200).send(user);
     } else res.sendStatus(404); // if userEmail and password are not a match, send 404
+  } catch (err) { next(err); }
+});
+
+router.delete('/logout/:userId', async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const userSession = await Session.findOne({
+      where: {
+        userId,
+      },
+    });
+    await userSession.destroy();
+    res.status(200).send({ message: 'You have been successfully logged out.' });
   } catch (err) { next(err); }
 });
 

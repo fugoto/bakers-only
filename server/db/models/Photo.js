@@ -20,4 +20,11 @@ const Photo = db.define('photo', {
   },
 });
 
+Photo.deletePhotos = async function (photoIds) {
+  for (const photoId of photoIds) {
+    const photo = await Photo.findByPk(photoId);
+    photo.destroy();
+  }
+};
+
 module.exports = Photo;

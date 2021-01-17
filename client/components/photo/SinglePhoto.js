@@ -2,16 +2,22 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import {
-  Card, CardMedia, CardContent, Typography, TextField, Button,
+  Card, CardMedia, CardContent, CardHeader, Typography, TextField, Button,
 } from '@material-ui/core';
 
 export default function SinglePhoto(props) {
   const {
-    imageUrl, title, type, addPhoto, getPhotoUrl, getTitle,
+    type, getPhotoUrl, getTitle,
   } = props;
+  const { imageUrl, title, tags } = props.photo;
   return (
     <>
       <Card variant="outlined" className="photo-card" style={{ width: '33%' }}>
+        { type === 'add'
+          ? <TextField label="Title" onChange={getTitle} />
+          : (
+            <CardHeader title={title} />
+          ) }
         <CardMedia
           component="img"
           image={imageUrl || './images/notFound.png'}
@@ -20,13 +26,15 @@ export default function SinglePhoto(props) {
           ? <Button id="upload_widget" variant="contained" color="secondary" onClick={getPhotoUrl}>Upload Photo</Button>
           : null }
         <CardContent>
-          <Typography>
-            { type === 'add'
-              ? <TextField label="Title" onChange={getTitle} />
-              : title }
-          </Typography>
+          { tags.length
+            ? (
+              <Typography>
+                Tags: 
+                { tags.join(', ') }
+              </Typography>
+            )
+            : null }
         </CardContent>
-        {/* { type === 'add' ? <Button onClick={addPhoto} variant="contained" color="secondary">Add My Creation!</Button> : null } */}
       </Card>
     </>
   );

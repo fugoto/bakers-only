@@ -32,6 +32,10 @@ class Login extends Component {
   }
 
   render() {
+    const { user } = this.props
+    if (user.userEmail) return (
+      <p>You are logged in as { user.userEmail }</p>
+    );
     return (
       <>
         <div id="signInContainer">

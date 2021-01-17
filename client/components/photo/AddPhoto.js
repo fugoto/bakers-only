@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import { addPhoto } from '../store/photos';
+import { addPhoto } from '../../store/photos';
 import SinglePhoto from './SinglePhoto';
 import Tags from './Tags';
 
@@ -48,9 +49,14 @@ class AddPhoto extends Component {
   }
 
   render() {
+    let { user } = this.props;
+    if (!user.id) return (
+      <Link to="/login">Please log in to add a photo</Link>
+    );
     return (
       <div>
-        <SinglePhoto type="add" getPhotoUrl={this.getPhotoUrl} addPhoto={this.addPhoto} getTitle={this.getTitle} imageUrl={this.state.imageUrl}/>
+        <SinglePhoto type="add" getPhotoUrl={this.getPhotoUrl} addPhoto={this.addPhoto} getTitle={this.getTitle} photo={this.state} />
+        <p>Select Tags:</p>
         <Tags getTag={this.getTag} />
         <Button onClick={this.addPhoto} variant="contained" color="secondary">Add My Creation!</Button>
       </div>
@@ -60,7 +66,7 @@ class AddPhoto extends Component {
 
 const mapStateToProps = (state) => ({
   photos: state.photos,
-  user: { id: 1 }, // MUST UPDATE
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
