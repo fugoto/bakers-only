@@ -18,6 +18,11 @@
     flex-direction: column;
 }
 
+.delete-photo .photo-card {
+    width: 100%;
+    display: inline-block;
+}
+
 #nav-bar {
     background-color: #DAE7DE;
     display: flex;

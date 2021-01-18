@@ -7,3 +7,5 @@ To run in development environment:
 Create database "bakers-only"
 seed: 'npm run seed'
 start app: 'npm run start-dev'
+
+Technologies used: JavaScript, React/Redux, PostGreSQL, Cloudinary, MaterialUI, CSS, bcrypt.

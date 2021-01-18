@@ -35,7 +35,7 @@ class ManagePhotos extends Component {
         <div className="photos">
           { user.photos.map((photo) => (
             <div className="delete-photo">
-              <SinglePhoto type="edit" photo={photo} title={photo.title} />
+              <SinglePhoto type="edit" photo={photo} title={photo.title} style={{ width: '100%' }} />
               <FormControlLabel
                 control={<Checkbox onChange={this.selectPhoto} value={photo.id} />}
                 label="Delete"
