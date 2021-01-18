@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User, Session } = require('../db');
 const { A_WEEK_IN_MILLISECONDS } = require('../../constants');
+const bcrypt = require('bcrypt');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -15,17 +16,13 @@ router.post('/login', async (req, res, next) => {
       where: {
         userEmail,
       },
-      // include: { all: true },
     });
     if (user) { // if userEmail has an account...
       // first check password match with hashed pwd stored in db
-
-      // const comparisonResult = await bcrypt.compare(password, user.hashedPassword);
-      const comparisonResult = (password === user.hashedPassword);
+      const comparisonResult = await bcrypt.compare(password, user.hashedPassword);
       if (!comparisonResult) { // if password did not match
         throw new Error('Wrong password!');
       }
-      // let userSession = user.session;
       let userSession = await user.getSession();
       if (!userSession) { // if user doesnt have a session, create new one
         userSession = await Session.create();

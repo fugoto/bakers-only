@@ -4,12 +4,13 @@ import React from 'react';
 import {
   Card, CardMedia, CardContent, CardHeader, Typography, TextField, Button,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 export default function SinglePhoto(props) {
   const {
     type, getPhotoUrl, getTitle,
   } = props;
-  const { imageUrl, title, tags } = props.photo;
+  const { imageUrl, title, tags, user } = props.photo;
   return (
     <>
       <Card variant="outlined" className="photo-card" style={{ width: '33%' }}>
@@ -29,11 +30,13 @@ export default function SinglePhoto(props) {
           { tags.length
             ? (
               <Typography>
-                Tags: 
-                { tags.join(', ') }
+                Tags: { tags.join(', ') }
               </Typography>
             )
             : null }
+            <Typography>
+                Baked with ❤️ by <Link to={`/${user.id}`}>{ user.username }</Link>
+            </Typography>
         </CardContent>
       </Card>
     </>

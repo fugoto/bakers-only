@@ -11,7 +11,6 @@ import Login from './auth/Login';
 import ManagePhotos from './photo/ManagePhotos';
 import { getUser } from '../store/user';
 
-// KEEP AS class for get user later on
 class App extends Component {
   componentDidMount() {
     this.props.getUser();
@@ -27,7 +26,7 @@ class App extends Component {
             <Route path="/addPhoto" exact component={AddPhoto} />
             <Route path="/login" exact component={Login} />
             <Route path="/managePhotos" exact component={ManagePhotos} />
-            {/* <Route path="/managePhotos/:photoId" render={(props) => <AddPhoto {...props} />} /> */}
+            <Route path="/:userId" exact component={Photos} />
           </Switch>
         </Router>
       </>

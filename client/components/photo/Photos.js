@@ -27,7 +27,9 @@ class Photos extends Component {
   filterPhotos() {
     const { tags } = this.state;
     const { photos } = this.props;
-    if (!tags.length) return photos;
+    const userIdFilter = this.props.match.params.userId * 1;
+    if (!tags.length && !userIdFilter) return photos;
+    if (userIdFilter) return photos.filter(photo => photo.user.id === userIdFilter);
     return photos.filter(photo => {
       for (let i = 0; i < tags.length; i++) {
         const tag = tags[i];

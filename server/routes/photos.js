@@ -1,11 +1,23 @@
 const router = require('express').Router();
-const { Photo } = require('../db');
+const { Photo, User } = require('../db');
 
 router.get('/', async (req, res, next) => {
   try {
-    res.send(await Photo.findAll());
+    res.send(await Photo.findAll({ include: [User] }));
   } catch (err) { next(err); }
 });
+
+// router.get('/:userId', async (req, res, next) => {
+//   try {
+//     const { userId } = req.params;
+//     const userPhotos = await Photo.findAll({
+//       where: {
+//         userId,
+//       },
+//     });
+//     res.send(userPhotos);
+//   } catch (err) { next(err); }
+// });
 
 router.post('/', async (req, res, next) => {
   try {
@@ -19,7 +31,7 @@ router.post('/', async (req, res, next) => {
 router.delete('/', async (req, res, next) => {
   try {
     const { photoIds } = req.body;
-    console.log('body',photoIds);
+    console.log('body', photoIds);
     Photo.deletePhotos(photoIds);
     res.sendStatus(200);
   } catch (err) { next(err); }

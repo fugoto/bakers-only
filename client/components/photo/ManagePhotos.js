@@ -11,21 +11,9 @@ class ManagePhotos extends Component {
     this.state = {
       photoIdsToDelete: [],
     };
-    // this.editPhoto = this.editPhoto.bind(this);
     this.selectPhoto = this.selectPhoto.bind(this);
     this.deletePhotos = this.deletePhotos.bind(this);
   }
-
-  // editPhoto(photo) {
-  //   return (
-  //     <Redirect
-  //     to={{
-  //       pathname: `/editPhotos/${photo.id}`,
-  //       state: { photo: photo },
-  //     }}
-  //   />
-  //   )
-  // }
 
   selectPhoto(e) {
     const { photoIdsToDelete } = this.state;
@@ -48,12 +36,10 @@ class ManagePhotos extends Component {
           { user.photos.map((photo) => (
             <div className="delete-photo">
               <SinglePhoto type="edit" imageUrl={photo.imageUrl} title={photo.title} />
-              {/* <Checkbox onChange={this.selectPhoto} value={photo.id} label="Delete" /> */}
               <FormControlLabel
                 control={<Checkbox onChange={this.selectPhoto} value={photo.id} />}
                 label="Delete"
               />
-              {/* <Button onClick={() => this.editPhoto(photo)}>Edit photo</Button> */}
             </div>
           )) }
         </div>

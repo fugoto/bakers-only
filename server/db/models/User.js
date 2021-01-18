@@ -5,9 +5,10 @@ const db = require('../db');
 const { STRING } = Sequelize;
 
 const User = db.define('user', {
-  name: {
+  username: {
     type: STRING,
     allowNull: false,
+    unique: true,
     validate: {
       notEmpty: true,
     },

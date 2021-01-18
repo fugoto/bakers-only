@@ -1,18 +1,17 @@
 next steps 
 
+user can register
 make same height cards
-bcrypt
-style navbar and make it 3 photos to a row
+add favorite option for picture 
+
 readme
 deploy
 
 edit photo functionality (start on redirect addphoto - not working)
 put constants in constants file (woofmates key etc)
 
-add favorite option for picture 
 
 
 change repo name
-update indentation so eslint isnt annoying!
 change names to baked goods. filters can be vegan, cake, cookie cupcake etc
 
