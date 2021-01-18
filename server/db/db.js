@@ -9,7 +9,8 @@ const db = new Sequelize(databaseUrl, {
     ssl: {
       require: true,
       rejectUnauthorized: false,
-    }
+    },
+  },
 });
 
 module.exports = db;
