@@ -44,6 +44,7 @@ class Photos extends Component {
     if (!photos.length) return null;
     return (
       <>
+        <span>Filter By: </span>
         <Tags getTag={this.getTag} />
         <div className="photos">
           { this.filterPhotos().map(photo => <SinglePhoto photo={photo} />) }

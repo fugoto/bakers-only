@@ -10,10 +10,12 @@ export default function SinglePhoto(props) {
   const {
     type, getPhotoUrl, getTitle,
   } = props;
-  const { imageUrl, title, tags, user } = props.photo;
+  const {
+    imageUrl, title, tags, user,
+  } = props.photo;
   return (
     <>
-      <Card variant="outlined" className="photo-card" style={{ width: '33%' }}>
+      <Card variant="outlined" className="photo-card" >
         { type === 'add'
           ? <TextField label="Title" onChange={getTitle} />
           : (
@@ -34,9 +36,15 @@ export default function SinglePhoto(props) {
               </Typography>
             )
             : null }
-            <Typography>
-                Baked with ❤️ by <Link to={`/${user.id}`}>{ user.username }</Link>
-            </Typography>
+          {
+                type === 'add' || type === 'edit' || !user
+                  ? null
+                  : (
+                    <Typography>
+                      Baked with ❤️ by <Link to={`/${user.id}`}>{ user.username }</Link>
+                    </Typography>
+                  )
+            }
         </CardContent>
       </Card>
     </>

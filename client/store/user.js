@@ -1,9 +1,24 @@
 /* eslint-disable no-underscore-dangle */
 import axios from 'axios';
 
+const REGISTER = 'REGISTER';
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 const GET_USER = 'GET_USER';
+
+const _register = (user) => ({
+  type: REGISTER,
+  user,
+});
+
+const register = (userInfo) => async (dispatch) => {
+  try {
+    const { data } = await axios.post('/api/user/register', userInfo);
+    dispatch(_register(data));
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 const _login = (user) => ({
   type: LOGIN,
@@ -15,6 +30,7 @@ const login = (loginInfo) => async (dispatch) => {
     const { data } = await axios.post('/api/user/login', loginInfo);
     dispatch(_login(data));
   } catch (err) {
+    alert('Email and password do not match. Please try again.');
     console.error(err);
   }
 };
@@ -60,4 +76,4 @@ export default function userReducer(state = {}, action) {
   }
 }
 
-export { login, logout, getUser };
+export { login, logout, getUser, register };

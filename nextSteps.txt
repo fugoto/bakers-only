@@ -1,6 +1,5 @@
 next steps 
 
-user can register
 make same height cards
 add favorite option for picture 
 

@@ -9,6 +9,7 @@ import AddPhoto from './photo/AddPhoto';
 import NavBar from './NavBar';
 import Login from './auth/Login';
 import ManagePhotos from './photo/ManagePhotos';
+import Registration from './auth/Registration';
 import { getUser } from '../store/user';
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
             <Route path="/" exact component={Photos} />
             <Route path="/addPhoto" exact component={AddPhoto} />
             <Route path="/login" exact component={Login} />
+            <Route path="/register" exact component={Registration} />
             <Route path="/managePhotos" exact component={ManagePhotos} />
             <Route path="/:userId" exact component={Photos} />
           </Switch>

@@ -10,6 +10,7 @@ function NavBar(props) {
       <Link to="/">Home</Link>
       <Link to="/addPhoto">Add Photo</Link>
       <Link to="/managePhotos">Manage Photos</Link>
+      <Link to="/register">Register</Link>
       <div id="auth-button">
         { !props.user.id
           ? (

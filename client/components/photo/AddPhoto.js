@@ -5,9 +5,11 @@ import { Button } from '@material-ui/core';
 import { addPhoto } from '../../store/photos';
 import SinglePhoto from './SinglePhoto';
 import Tags from './Tags';
+import { CLOUDNAME, UPLOAD_PRESET } from '../../../constants';
+import { getUser } from '../../store/user';
 
-const cloudName = 'woofmates';
-const uploadPreset = 'woofmates';
+const cloudName = CLOUDNAME;
+const uploadPreset = UPLOAD_PRESET;
 
 class AddPhoto extends Component {
   constructor(props) {
@@ -43,9 +45,13 @@ class AddPhoto extends Component {
     else this.setState({ tags: this.state.tags.filter(tag => tag !== e.target.name) });
   }
 
-  addPhoto() {
+  async addPhoto() {
     const userId = this.props.user.id;
-    this.props.addPhoto(userId, this.state);
+    await this.props.addPhoto(userId, this.state);
+    await this.props.getUser();
+    this.props.history.push({
+        pathname: '/',
+    });
   }
 
   render() {
@@ -71,6 +77,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addPhoto: (userId, photoInfo) => dispatch(addPhoto(userId, photoInfo)),
+  getUser: () => dispatch(getUser()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddPhoto);

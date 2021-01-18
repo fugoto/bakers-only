@@ -16,8 +16,8 @@ function getRandomInt(max) {
 async function populateData() {
   for (let i = 1; i <= totalPhotos; i++) {
     photos.push({
-      imageUrl: './images/cat1.jpeg',
-      title: 'My cookie',
+      imageUrl: './images/cake.jpeg',
+      title: 'My cake',
       tags: [TAGS[getRandomInt(TAGS.length)], TAGS[getRandomInt(TAGS.length)]],
     });
   }

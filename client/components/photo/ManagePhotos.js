@@ -28,14 +28,14 @@ class ManagePhotos extends Component {
   render() {
     const { user } = this.props;
     if (!user.id) return (
-      <Link to="/login">Please log in to add a photo</Link>
+      <Link to="/login">Please log in to manage your photos</Link>
     );
     return (
       <>
         <div className="photos">
           { user.photos.map((photo) => (
             <div className="delete-photo">
-              <SinglePhoto type="edit" imageUrl={photo.imageUrl} title={photo.title} />
+              <SinglePhoto type="edit" photo={photo} title={photo.title} />
               <FormControlLabel
                 control={<Checkbox onChange={this.selectPhoto} value={photo.id} />}
                 label="Delete"

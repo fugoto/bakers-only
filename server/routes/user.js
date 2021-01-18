@@ -1,7 +1,8 @@
 const router = require('express').Router();
+const bcrypt = require('bcrypt');
 const { User, Session } = require('../db');
 const { A_WEEK_IN_MILLISECONDS } = require('../../constants');
-const bcrypt = require('bcrypt');
+const { saltAndHash } = require('../../utils/hashPassword');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -41,6 +42,26 @@ router.post('/login', async (req, res, next) => {
       });
       res.status(200).send(user);
     } else res.sendStatus(404); // if userEmail and password are not a match, send 404
+  } catch (err) { next(err); }
+});
+
+router.post('/register', async (req, res, next) => {
+  try {
+    const { userEmail, password, username } = req.body;
+    const hashedPassword = await saltAndHash(password);
+    const newUser = await User.create({
+      userEmail,
+      hashedPassword,
+      username,
+    });
+    const userSession = await Session.create();
+    await userSession.setUser(newUser);
+    await userSession.save();
+    res.cookie('sid', userSession.sid, { // set/refresh the expiration date of cookie
+      maxAge: A_WEEK_IN_MILLISECONDS,
+      path: '/',
+    });
+    res.send(newUser);
   } catch (err) { next(err); }
 });
 

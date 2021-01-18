@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
-import { login } from '../../store/user';
+import { login, register } from '../../store/user';
 
 class Login extends Component {
   constructor(props) {
@@ -10,10 +10,12 @@ class Login extends Component {
     this.state = {
       userEmail: '',
       password: '',
+      username: '',
       loggedIn: false,
     };
     this.setEmail = this.setEmail.bind(this);
     this.setPassword = this.setPassword.bind(this);
+    this.setUsername = this.setUsername.bind(this);
     this.submit = this.submit.bind(this);
   }
 
@@ -25,17 +27,27 @@ class Login extends Component {
     this.setState({ password: ev.target.value });
   }
 
+  setUsername(ev) {
+    this.setState({ username: ev.target.value });
+  }
+
   submit(ev) {
     ev.preventDefault();
-    const { login } = this.props;
-    login(this.state);
+    const { login, register, type } = this.props;
+    if (type === 'new') register(this.state);
+    else login(this.state);
   }
 
   render() {
-    const { user } = this.props
-    if (user.userEmail) return (
-      <p>You are logged in as { user.userEmail }</p>
-    );
+    const { user, type } = this.props;
+    if (user.userEmail) {
+      return (
+        <p>
+          You are logged in as
+          { user.userEmail }
+        </p>
+      );
+    }
     return (
       <>
         <div id="signInContainer">
@@ -49,9 +61,7 @@ class Login extends Component {
                 fullWidth
                 id="login-email"
                 label="Your Email"
-                name="email"
                 autoComplete="email"
-                className="loginEmail"
                 onChange={this.setEmail}
                 value={this.state.userEmail}
               />
@@ -61,15 +71,29 @@ class Login extends Component {
                 margin="normal"
                 required
                 fullWidth
-                name="password"
                 label="Password"
                 type="password"
                 id="login-password"
                 autoComplete="current-password"
-                className="loginPassword"
                 onChange={this.setPassword}
                 value={this.state.password}
               />
+              <p />
+              {
+                  type === 'new'
+                    ? (
+                      <TextField
+                        variant="filled"
+                        margin="normal"
+                        required
+                        fullWidth
+                        label="Username"
+                        onChange={this.setUsername}
+                        value={this.state.username}
+                      />
+                    )
+                    : null
+                }
               <p />
               <Button
                 type="submit"
@@ -78,7 +102,7 @@ class Login extends Component {
                 color="secondary"
                 className="signInAuthButton"
               >
-                Log In
+                { type === 'new' ? 'Register' : 'Log In' }
               </Button>
             </form>
           </div>
@@ -94,6 +118,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   login: (loginInfo) => dispatch(login(loginInfo)),
+  register: (userInfo) => dispatch(register(userInfo)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

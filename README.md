@@ -1,5 +1,9 @@
-# cats-only
+# bakers-only
+Bakers Only is an online image repository where bakers can share and show off their newest baking creations to each other, and get inspiration from each others' creations.
 
-instructions
+Deployed at https://bakers-only.herokuapp.com/ 
 
-while this was not in scope, I'd like to have multiple people have log in accounts and make this a shared repository of a baking community. 
+To run in development environment:
+Create database "bakers-only"
+seed: 'npm run seed'
+start app: 'npm run start-dev'

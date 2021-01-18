@@ -5,12 +5,12 @@ const databaseUrl = process.env.DATABASE_URL || 'postgres:localhost:5432/bakers-
 const db = new Sequelize(databaseUrl, {
   logging: false,
   operatorsAliases: false,
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
+//   dialectOptions: {
+//     ssl: {
+//       require: true,
+//       rejectUnauthorized: false,
+//     },
+//   },
 });
 
 module.exports = db;
